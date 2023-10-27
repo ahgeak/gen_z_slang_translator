@@ -1,0 +1,29 @@
+#favbar{
+    background:rgb(170, 177, 216);
+    float:right;
+    height:600px;
+    width:200px;
+}
+
+.topnav{
+    background-color: rgb(170, 177, 216);
+    width:80%;
+    margin: 30px auto;
+    
+
+}
+
+#mySearch {
+    width: 70%;
+    font-size: 18px;
+    padding: 11px;
+    border: 1px solid #ddd;
+
+  }
+
+  
+  #wikiinfo{
+    outline: 5px dashed rgb(170, 177, 216);
+    width: 80%;
+    height:300px;
+  }
