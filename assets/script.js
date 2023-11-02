@@ -44,51 +44,57 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Wiki section for Gen Z Slang
 $(function () {
-  var wikiTextOutput = document.getElementById("wiki-output");
-  var wikiOutput = document.getElementsByClassName("definition");
-  // Something is wrong with this wiki URL => is not responsive
-  var wikiSlangURL = 'https://en.wikipedia.org/wiki/List_of_Generation_Z_slang';
+  var wikiTextOutput = document.querySelector("#wiki-output");
+  var wikiOutput = document.querySelector(".definition");
+  var wikiRequestUrl = 'https://en.wikipedia.org/w/api.php?action=query&prop=revisions&format=json&titles=List_of_Generation_Z_slang&rvprop=content&origin=*';
 
   // Fetch URL and then for respone
-  fetch(wikiSlangURL)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error: ${response.status}`)
-      }
-      return response.text();
-    })
+  fetch(wikiRequestUrl)
+  .then(function(response){
+    return response.json();
+  })
+  .then(function(content) {
+    console.log(content);
+  })
+    // .then((response) => {
+    //   if (!response.ok) {
+    //     throw new Error(`HTTP error: ${response.status}`)
+    //   }
+    //   return response.text();
+    // })
 
-    .then((text) => {
-      wikiOutput.wikiTextOutput = text;
-    })
+    // .then((text) => {
+    //   wikiOutput.wikiTextOutput = text;
+    // })
 
-    .catch((error) => {
-      wikiOutput.wikiTextOutput = `Could not fetch verse: ${error}`;
-    })
+    // .catch((error) => {
+    //   wikiOutput.wikiTextOutput = `Could not fetch verse: ${error}`;
+    // })
 
   // Function for wiki input to search
   function clickToSearchForSlangWords(event) {
     event.preventDefault();
-    var wikiInput = getElementsByClassName('input');
-    console.log('input', wikiInput);
-    var wikiSearchButton = document.getElementsByClassName("searchBtn");
-
-    var inputInSearchBox = wikiInput.text();
-    localStorage.setItem(wikiInput, inputInSearchBox);
+    var wikiInput = document.querySelector("#wiki-input");
+    // console.log(wikiInput.value);
+    var inputInSearchBox = document.querySelector(".input");
+    var userInput = wikiInput.value;
   }
-
+  
+  var wikiSearchButton = document.querySelector(".searchBtn");
   wikiSearchButton.addEventListener('click', clickToSearchForSlangWords);
-
+  
   // Function + For loop to get wiki output from search 
-  // function wikiOutputFromSearch(event) {
-  //   event.preventDefault();
-  // }
+  // Maybe we dont need a function to display search output 
+  function wikiOutputFromSearch(event) {
+    event.preventDefault();
+    var outputInDefinitionArea = wikiOutput.val();
+  }
 
   // Function to add wiki output to favorite
   function clickToAddWikiFav(event) {
     event.preventDefault();
-    var wikiFavButton = document.getElementsByClassName("favorite-button");
   }
-
+  
+  var wikiFavButton = document.querySelector(".favorite-button");
   wikiFavButton.addEventListener('click', clickToAddWikiFav);
 });
