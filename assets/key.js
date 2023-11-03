@@ -1,1 +1,0 @@
-var giphyApiKey = u9ItgShSNZy4TjZz99RxhFbHCXXkvSMU;
