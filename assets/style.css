@@ -1,0 +1,83 @@
+*{
+  font-family: 'Retro New Version', sans-serif;
+ 
+                                                
+}
+  
+
+
+   .p.input{
+    outline: 5px dashed rgb(170, 177, 216);
+    width: 80%;
+    height:300px;
+  }
+
+  /* this is for the gif img  */
+  .gif-content-1{
+    float: left;
+    width: 25%;
+    padding: 5px;
+
+  }
+
+  .gif-content-2{
+    float: left;
+    width: 25%;
+    padding: 5px;
+
+  }
+
+  .gif-content-3{
+    float: left;
+    width: 25%;
+    padding: 5px;
+
+  }
+
+  .wiki-input{
+    padding: 25px 50px 75px 100px;
+
+  }
+
+  .output-header{
+  
+    width: 80%;
+    height:50px;
+  }
+
+  .definition{
+    border: 3px solid #461959;
+    width: 80%;
+    height:150px;
+    grid-column: 1;
+    grid-row: 1 / 5;
+  }
+
+  .hero.is-link{
+    background-color: #461959;
+  }
+
+.hero.is-link .title{
+  color:#AED8CC ;
+                                                
+}
+
+.gif-output{
+ width: 80%;
+ border: 3px solid #461959;
+ height: 150px;
+
+}
+/* for the fav bar */
+
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+}
+.fav-box{
+  grid-column: 3;
+  grid-row: 1 / 5;
+}
