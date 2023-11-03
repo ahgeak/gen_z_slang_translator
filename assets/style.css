@@ -1,83 +1,112 @@
-*{
-  font-family: 'Retro New Version', sans-serif;
+* {
+  font-family: "Retro New Version", sans-serif;
+  background-color: #461959;
+}
+
+html, body{
+  margin: 0%;
+  padding: 0%;
+  background-color: #461959
+}
+
+
+
+.input {
+  width: 945px;
+  border: 3px solid #7A316F;
+}
+
+.card.wiki-card{
+  background-color: #461959;
+}
+
+/* this is for the gif img  */
+.gif-content-1 {
+  float: left;
+  width: 25%;
+  padding: 5px;
+}
+
+.gif-content-2 {
+  float: left;
+  width: 25%;
+  padding: 5px;
+}
+
+.gif-content-3 {
+  float: left;
+  width: 25%;
+  padding: 5px;
+}
+
+.wiki-input {
+  padding: 25px 50px 75px 100px;
+}
+
+.output-header {
+  width: 80%;
+  height: 50px;
+}
+
+.definition {
+  border: 3px solid #7A316F;
+  width: 75%;
+  height: 150px;
+  grid-column: 1;
+  grid-row: 1 / 5;
+}
+
+.hero-body {
+  background-color: #7A316F;
+  text-align: center;
+  
+}
+.subtitle{
+  width: 400px;
  
-                                                
-}
-  
-
-
-   .p.input{
-    outline: 5px dashed rgb(170, 177, 216);
-    width: 80%;
-    height:300px;
-  }
-
-  /* this is for the gif img  */
-  .gif-content-1{
-    float: left;
-    width: 25%;
-    padding: 5px;
-
-  }
-
-  .gif-content-2{
-    float: left;
-    width: 25%;
-    padding: 5px;
-
-  }
-
-  .gif-content-3{
-    float: left;
-    width: 25%;
-    padding: 5px;
-
-  }
-
-  .wiki-input{
-    padding: 25px 50px 75px 100px;
-
-  }
-
-  .output-header{
-  
-    width: 80%;
-    height:50px;
-  }
-
-  .definition{
-    border: 3px solid #461959;
-    width: 80%;
-    height:150px;
-    grid-column: 1;
-    grid-row: 1 / 5;
-  }
-
-  .hero.is-link{
-    background-color: #461959;
-  }
-
-.hero.is-link .title{
-  color:#AED8CC ;
-                                                
 }
 
-.gif-output{
- width: 80%;
- border: 3px solid #461959;
- height: 150px;
+.title{
+  width: 400px;
+ 
+}
 
+
+
+.hero.is-link .title {
+  color: #aed8cc;
+
+}
+
+.gif-output {
+  width: 75%;
+  border: 3px solid #7A316F;
+  height: 150px;
 }
 /* for the fav bar */
 
-
-.wrapper {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  grid-auto-rows: minmax(100px, auto);
+.fav-box {
+  position: absolute;
+  top: 217px;
+  right: 0px; ;
+  z-index: 1;
+  border: 3px solid #7A316F ;
+  width: 315px;
+  height: 375px;
+  color: #aed8cc;
+ 
 }
-.fav-box{
-  grid-column: 3;
-  grid-row: 1 / 5;
+
+.gif-button{
+  position: absolute;
+  right: 465px;
+  z-index: 1;
+}
+
+.js-modal-trigger{
+  position: absolute;
+  right: 245px;
+  top: 220px;
+  z-index: 1;
+ 
 }
