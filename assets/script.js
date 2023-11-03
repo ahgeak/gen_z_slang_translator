@@ -46,8 +46,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // https://developers.giphy.com/docs/api/#quick-start-guide
-var tempSearchWord = "cat";
-var tempGiphyApiKey = "u9ItgShSNZy4TjZz99RxhFbHCXXkvSMU";
+var tempSearchWord = "penguin"; // this will change once connected to Bryan's code
+var tempSearchDefinition = "A cute animal that lives in the Antarctic"
+var tempGiphyApiKey = "u9ItgShSNZy4TjZz99RxhFbHCXXkvSMU"; // this will connect to the API key in keys.js
 var requestURL =
   "https://api.giphy.com/v1/gifs/search?api_key=" +
   tempGiphyApiKey +
@@ -55,9 +56,11 @@ var requestURL =
   tempSearchWord;
 console.log(requestURL);
 
+// Event listener for the "Make a Gif?" button
 var gifButton = document.querySelector(".gif-button");
 gifButton.addEventListener("click", searchGif);
 
+// searchGif funciton is called when "Make a Gif?" button is clicked. This function uses an API fetch request to return 3 gifs related to the inputed search word
 function searchGif() {
   fetch(requestURL)
     .then(function (response) {
@@ -78,3 +81,20 @@ function searchGif() {
       });
     });
 }
+
+// Event listener for the "Favorites List" button
+var favoriteButton = document.querySelector(".favorite-button");
+favoriteButton.addEventListener("click", storedFavoriteList);
+
+var storedFavoritesArray = {
+  word: "",
+  definition: ""
+}
+
+
+function storedFavoriteList() {
+  localStorage.setItem("word", tempSearchWord);
+  localStorage.setItem("definition", tempSearchDefinition);
+}
+
+var favoriteListButton = document.querySelector("modal-js-example")
