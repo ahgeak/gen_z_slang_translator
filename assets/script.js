@@ -53,7 +53,7 @@ var requestURL =
 console.log(requestURL);
 
 // Event listener for the "Make a Gif?" button
-var gifButton = document.querySelector(".gif-button");
+var gifButton = document.getElementById("gif-button");
 gifButton.addEventListener("click", searchGif);
 
 // searchGif funciton is called when "Make a Gif?" button is clicked. This function uses an API fetch request to return 3 gifs related to the inputed search word
@@ -67,20 +67,32 @@ function searchGif() {
         src: content.data[0].images.downsized.url,
         alt: content.data[0].title,
       });
+      document.getElementById("gif-title-1").textContent = content.data[0].title
       $("#gif2").attr({
         src: content.data[1].images.downsized.url,
         alt: content.data[1].title,
       });
+      document.getElementById("gif-title-2").textContent = content.data[1].title
       $("#gif3").attr({
         src: content.data[2].images.downsized.url,
         alt: content.data[2].title,
       });
+      document.getElementById("gif-title-3").textContent = content.data[2].title
     });
+    // varibles to get Gif Card IDs
+    var gifCardOne = document.getElementById("gif-card-1");
+    var gifCardTwo = document.getElementById("gif-card-2");
+    var gifCardThree = document.getElementById("gif-card-3");
+
+    // Changing the view to visible so the gifs will appear on screen
+    gifCardOne.setAttribute("view", "visible");
+    gifCardTwo.setAttribute("view", "visible");
+    gifCardThree.setAttribute("view", "visible");
 }
 
 
 // Event listener for the "Favorites List" button
-var favoriteButton = document.querySelector(".favorite-button");
+var favoriteButton = document.getElementById("favorite-button");
 favoriteButton.addEventListener("click", storeFavoriteList);
 
 var storedFavoritesArray = {

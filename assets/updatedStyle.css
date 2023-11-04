@@ -1,0 +1,9 @@
+/* hide elements */
+[view="hidden"] {
+    display: none;
+}
+
+/* make elements visible */
+[view="visible"] {
+    display: block;
+}
