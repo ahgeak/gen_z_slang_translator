@@ -46,67 +46,74 @@ document.addEventListener('DOMContentLoaded', () => {
   $(function () {
     // Global variables for wiki url and wiki input + output
     var wikiRequestUrl = 'https://www.wikitable2json.com/api/List_of_Generation_Z_slang?lang=en&cleanRef=false';
-    var wikiTextOutput = document.querySelector("#wiki-output");
-    var wikiOutput = document.querySelector(".definition");
-    var wikiInput = document.querySelector("#wiki-input");
+    var wikiTextOutput = document.querySelector("#search-output");
+    var wikiOutput = document.querySelector("#definition-output");
+    var slangTerms = [];
+    var definitionTerms = [];
     
     // Fetch URL and then for respone
       fetch(wikiRequestUrl)
         .then(function (response) {
           return response.json();
         })
-        .then( (content) => {
-          // This console.log is working!! Use this!
+        .then(function (data) {
           // console.log(content[0][1][0]);
           // console.log(content[0][1][1]);
-          var slangTerm = content[0][1][0];
-          var slangString = JSON.stringify(slangTerm);
-          if (userInput === slangString) {
-            $("#search-output").text(slangString);
-            console.log("match");
-          } else {
-            console.log("doesnt match");
-            console.log(userInput);
-          }
-          var definitionTerm = content[0][1][1];
-          var definitionString = JSON.stringify(definitionTerm);
-          $("#definition-output").text(definitionString);
+          // for (let i = 0; i < slangTerm.length; i++) {
+          //   var displaySearchOuput = '${content.slangTerm}';
+          //   console.log(displaySearchOuput);
+          //   return displaySearchOuput;
+          // }
+          // var slangString = JSON.stringify(slangTerm);
+          // $("#search-output").get('${content.slangTerm}');
+          
+          // var definitionTerm = content[0][1][1];
+          // var definitionString = JSON.stringify(definitionTerm);
+          // $("#definition-output").text(definitionString);
+          var termsArray = data[0].slice(1);
+          termsArray.forEach(function(term) {
+            slangTerms.push ({
+              term: term[0],
+              definition: term[1]
+            })
+          })
+          console.log(slangTerms);
+          return slangTerms;
+        })
+        .catch(function (error){
+          console.log(error);
         })
 
-    // Matrix for slang word and definition
-    // var slangMatrix = [
-    //   ["@me", "Pronounced 'at me.' Used on social media when someone feels attacked by a post."],
-    //   ["Asl", "Shortened version of 'as hell' Unrelated to early internet slang 'age/sex/location.'"],
-    //   ["Ate", "Used to express praise/admiration for a certion action or emotion performed by someone, with them often doing that action successfully."]
-    // ];
-    
-    // for (let i = 0; i < slangMatrix.length; i++) {
-    //   console.log('Term: ${slangMatrix[i][0]}, Definition: ${slangMatrix[i][1]}')
+    function termsToLowerCase(slangTerms) {
+      var slangTermsToLower = JSON.stringify(slangTerms.term[0]);
+      console.log(slangTermsToLower);
+    }
+    termsToLowerCase();
 
   // Function for wiki input to search
     function clickToSearchForSlangWords(event) {
       event.preventDefault();
-      // console.log(wikiInput.value);
-      var inputInSearchBox = document.querySelector(".input");
-      var userInput = wikiInput.value;
-      return userInput;
+      for (let index = 0; index < array.length; index++) {
+        const element = array[index];
+        
+      }
       }
 
     var wikiSearchButton = document.querySelector("#searchBtn");
     wikiSearchButton.addEventListener('click',clickToSearchForSlangWords);
 
-    // Function + For loop to get wiki output from search 
-    // Maybe we dont need a function to display search output 
-    function wikiOutputFromSearch(event) {
-      event.preventDefault();
-      var outputInDefinitionArea = wikiOutput.val();
-    }
+  //   // Function + For loop to get wiki output from search 
+  //   // Maybe we dont need a function to display search output 
+  //   function wikiOutputFromSearch(event) {
+  //     event.preventDefault();
+  //     var outputInDefinitionArea = wikiOutput.text;
+  //   }
 
-    // Function to add wiki output to favorite
-    function clickToAddWikiFav(event) {
-      event.preventDefault();
-    }
+  //   // Function to add wiki output to favorite
+  //   function clickToAddWikiFav(event) {
+  //     event.preventDefault();
+  //   }
 
-    var wikiFavButton = document.querySelector(".favorite-button");
-    wikiFavButton.addEventListener('click', clickToAddWikiFav);
+  //   var wikiFavButton = document.querySelector(".favorite-button");
+  //   wikiFavButton.addEventListener('click', clickToAddWikiFav);
   });
