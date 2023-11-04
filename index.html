@@ -117,6 +117,44 @@
           <button class="js-modal-trigger" data-target="modal-js-example">
             Favorites
           </button>
+
+          <!-- Added Card for Favorite List -->
+          <!-- Card Header for Favorite List - Bulma card-header component -->
+          <div class="card favorite-list">
+            <header class="card-header favorite-list-header">
+              <p id="favorite-list-header" class="card-header-title">
+                Saved Favorites List
+              </p>
+              <button class="card-header-icon" aria-label="more options">
+                <span class="icon">
+                  <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+              </button>
+            </header>
+          </div>
+
+          <!-- Favorite List Content - Bulma card-content component -->
+          <div class="card">
+            <div class="card-content">
+              <div id="favorite-list-content" class="content">
+                <!-- <h4 id="favorite-list-saved-word"></h4>
+                <p id="favorite-list-saved-definition"></p> -->
+              </div>
+            </div>
+          </div>
+
+          <!-- To replay the modal-content above -->
+            
+          <div class="modal-content">
+            <div class="box">
+              <h2>Tools used in this program:</h2>
+              <ul>
+                <li>WikiTables API: <a href="https://www.wikitable2json.com/">https://www.wikitable2json.com/</a></li>
+                <li>Giphy API: <a href="https://developers.giphy.com/docs/api/">https://developers.giphy.com/docs/api/</a></li>
+                <li>Bulma CSS Framework: <a href="https://bulma.io/documentation/">https://bulma.io/documentation/</a></li>
+              </ul>
+          </div>
+          <!-- end of added content since last pull -->
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="./assets/script.js"></script>
