@@ -46,8 +46,9 @@ document.addEventListener('DOMContentLoaded', () => {
   $(function () {
     // Global variables for wiki url and wiki input + output
     var wikiRequestUrl = 'https://www.wikitable2json.com/api/List_of_Generation_Z_slang?lang=en&cleanRef=false';
-    var wikiTextOutput = document.querySelector("#search-output");
-    var wikiOutput = document.querySelector("#definition-output");
+    var wikiSearchOutputInTextBox = document.querySelector("#search-output");
+    var wikiDefinitionOutputInTextBox = document.querySelector("#definition-output");
+    var wikiSearchButton = document.querySelector("#searchBtn");
     var slangTerms = [];
     var definitionTerms = [];
     
@@ -57,19 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
           return response.json();
         })
         .then(function (data) {
-          // console.log(content[0][1][0]);
-          // console.log(content[0][1][1]);
-          // for (let i = 0; i < slangTerm.length; i++) {
-          //   var displaySearchOuput = '${content.slangTerm}';
-          //   console.log(displaySearchOuput);
-          //   return displaySearchOuput;
-          // }
-          // var slangString = JSON.stringify(slangTerm);
-          // $("#search-output").get('${content.slangTerm}');
-          
-          // var definitionTerm = content[0][1][1];
-          // var definitionString = JSON.stringify(definitionTerm);
-          // $("#definition-output").text(definitionString);
           var termsArray = data[0].slice(1);
           termsArray.forEach(function(term) {
             slangTerms.push ({
@@ -77,30 +65,47 @@ document.addEventListener('DOMContentLoaded', () => {
               definition: term[1]
             })
           })
-          console.log(slangTerms);
+          // console.log(slangTerms);
           return slangTerms;
         })
         .catch(function (error){
           console.log(error);
         })
 
-    function termsToLowerCase(slangTerms) {
-      var slangTermsToLower = JSON.stringify(slangTerms.term[0]);
-      console.log(slangTermsToLower);
-    }
-    termsToLowerCase();
+  //   function termsToLowerCase(slangTerms) {
+  //     var slangTermsToLower = JSON.stringify(slangTerms.term[0]);
+  //     console.log(slangTermsToLower);
+  //   }
+  //   termsToLowerCase();
 
-  // Function for wiki input to search
+  // // Function for wiki input to search
     function clickToSearchForSlangWords(event) {
       event.preventDefault();
-      for (let index = 0; index < array.length; index++) {
-        const element = array[index];
-        
+      for (let index = 0; index < slangTerms.length; index++) {
+        // Now user input is not targetting a specific term. Length: SlangTerms[71]
+        var userInput = document.querySelector("#wiki-input").value.toLowerCase();
+        var userInputMatchSlangData = slangTerms;
+        console.log(userInputMatchSlangData);
+        // if userInput = one of the slang terms, display definition
+        if (userInput === slangTerms) {
+          wikiSearchOutputInTextBox.textContent()
+          wikiDefinitionOutputInTextBox.textContent();
+          // otherwise display "slang word not found! Try it again!"
+        } else {
+          let errorOutput = 'Slang word not found! Try it again!'
+          wikiDefinitionOutputInTextBox.textContent(errorOutput);
+        }
       }
       }
-
-    var wikiSearchButton = document.querySelector("#searchBtn");
+    
     wikiSearchButton.addEventListener('click',clickToSearchForSlangWords);
+    
+    function disabledSearchButton() {
+      if (!userInputMatchSlangData.ok) {
+        wikiSearchButton.disabled = true;
+      }
+    }
+    wikiSearchButton.addEventListener('click', disabledSearchButton, true);
 
   //   // Function + For loop to get wiki output from search 
   //   // Maybe we dont need a function to display search output 
