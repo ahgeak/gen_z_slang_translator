@@ -1,3 +1,4 @@
+
 // Trigger button for modal 
 document.addEventListener('DOMContentLoaded', () => {
   // Functions to open and close a modal
@@ -49,6 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
     var wikiSearchOutputInTextBox = document.querySelector("#search-output");
     var wikiDefinitionOutputInTextBox = document.querySelector("#definition-output");
     var wikiSearchButton = document.querySelector("#searchBtn");
+    var userInput = document.querySelector("#wiki-input")
+
     var slangTerms = [];
     var definitionTerms = [];
     
@@ -72,53 +75,40 @@ document.addEventListener('DOMContentLoaded', () => {
           console.log(error);
         })
 
-  //   function termsToLowerCase(slangTerms) {
-  //     var slangTermsToLower = JSON.stringify(slangTerms.term[0]);
-  //     console.log(slangTermsToLower);
-  //   }
-  //   termsToLowerCase();
-
   // // Function for wiki input to search
     function clickToSearchForSlangWords(event) {
       event.preventDefault();
-      for (let index = 0; index < slangTerms.length; index++) {
-        // Now user input is not targetting a specific term. Length: SlangTerms[71]
-        var userInput = document.querySelector("#wiki-input").value.toLowerCase();
-        var userInputMatchSlangData = slangTerms;
-        console.log(userInputMatchSlangData);
-        // if userInput = one of the slang terms, display definition
-        if (userInput === slangTerms) {
-          wikiSearchOutputInTextBox.textContent()
-          wikiDefinitionOutputInTextBox.textContent();
-          // otherwise display "slang word not found! Try it again!"
+      console.log(slangTerms)
+
+      // userInputEl
+      // userInputVal
+
+      for(let i = 0 ; i< slangTerms.length ; i++) {
+        console.log(userInput)
+        //console.log(slangTerms[i].term.toLowerCase() + " vs " + userInput)
+        if(slangTerms[i].term.toLowerCase()===userInput.value.toLowerCase()) {
+          console.log("Matched!")
+          wikiSearchOutputInTextBox.textContent = slangTerms[i].term
+          wikiDefinitionOutputInTextBox.textContent = slangTerms[i].definition
         } else {
-          let errorOutput = 'Slang word not found! Try it again!'
-          wikiDefinitionOutputInTextBox.textContent(errorOutput);
+          console.log("Not matched")
         }
       }
+
+      return;
       }
     
     wikiSearchButton.addEventListener('click',clickToSearchForSlangWords);
-    
-    function disabledSearchButton() {
-      if (!userInputMatchSlangData.ok) {
+    wikiSearchButton.disabled = true;
+
+    userInput.addEventListener("keyup", function() {
+      var numberOfCharacters = userInput.value.length
+      console.log(numberOfCharacters)
+      if(numberOfCharacters!==0) {
+        wikiSearchButton.disabled = false;
+      } else {
         wikiSearchButton.disabled = true;
       }
-    }
-    wikiSearchButton.addEventListener('click', disabledSearchButton, true);
 
-  //   // Function + For loop to get wiki output from search 
-  //   // Maybe we dont need a function to display search output 
-  //   function wikiOutputFromSearch(event) {
-  //     event.preventDefault();
-  //     var outputInDefinitionArea = wikiOutput.text;
-  //   }
-
-  //   // Function to add wiki output to favorite
-  //   function clickToAddWikiFav(event) {
-  //     event.preventDefault();
-  //   }
-
-  //   var wikiFavButton = document.querySelector(".favorite-button");
-  //   wikiFavButton.addEventListener('click', clickToAddWikiFav);
+    })
   });
