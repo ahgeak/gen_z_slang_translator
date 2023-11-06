@@ -58,7 +58,8 @@ $(function () {
   var definitionTerms = [];
   var currentSearchOutput = "";
   console.log(currentSearchOutput);
-  var storedFavoritesArray = JSON.parse(localStorage.getItem("favorites")) || [];
+  var storedFavoritesArray =
+    JSON.parse(localStorage.getItem("favorites")) || [];
   // var storedFavoritesArray = JSON.parse(localStorage.getItem("favorites"));
   // var storedFavoritesArray = [];
 
@@ -178,7 +179,7 @@ $(function () {
 
     // Event listener for the "Favorites List" button
     var favoriteButton = document.getElementById("favorite-button");
-    
+
     favoriteButton.addEventListener("click", function (event) {
       //if statement second array with previously searched terms and search that array to see if it is in there
       // console.log(JSON.stringify(storedFavoritesArray.value) + "this is the word");
@@ -193,21 +194,32 @@ $(function () {
       // if (storedFavoritesArray === searchTerm){
       //   console.log ("blocked");
       // }
-      
+
       var storedFavoritesObject = {
         word: searchTerm,
         definition: definition,
       };
-      
+
+      // Check if the item already exists in the array
+      var isDuplicate = storedFavoritesArray.some(function (item) {
+        return (
+          item.word === storedFavoritesObject.word &&
+          item.definition === storedFavoritesObject.definition
+        );
+      });
+
+      if (!isDuplicate) {
+        storedFavoritesArray.push(storedFavoritesObject);
+        localStorage.setItem("favorites", JSON.stringify(storedFavoritesArray));
+      }
+
       // for (var i = 0; i < storedFavoritesArray.length; i++){
       //   if (storedFavoritesArray[i].word == searchTerm) {
       //     console.log("block");
-      //   } 
+      //   }
       // }
-      
-      storedFavoritesArray.push(storedFavoritesObject);
-      console.log(storedFavoritesArray);
-      localStorage.setItem("favorites", JSON.stringify(storedFavoritesArray));
+      // storedFavoritesArray.push(storedFavoritesObject);
+      // localStorage.setItem("favorites", JSON.stringify(storedFavoritesArray));
     });
     renderStoredFavoriteList();
   }
@@ -215,7 +227,9 @@ $(function () {
   function renderStoredFavoriteList() {
     console.log(storedFavoritesArray);
     for (var i = 0; i < storedFavoritesArray.length; i++) {
-      var favoriteListContent = document.getElementById("favorite-list-content");
+      var favoriteListContent = document.getElementById(
+        "favorite-list-content"
+      );
       var headerElement = document.createElement("h4");
       var pElement = document.createElement("p");
 
