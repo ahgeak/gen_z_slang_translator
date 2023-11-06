@@ -55,13 +55,11 @@ $(function () {
   var wikiSearchButton = document.querySelector("#searchBtn");
   var userInput = document.querySelector("#wiki-input");
   var slangTerms = [];
-  var definitionTerms = [];
+  
   var currentSearchOutput = "";
   console.log(currentSearchOutput);
   var storedFavoritesArray =
     JSON.parse(localStorage.getItem("favorites")) || [];
-  // var storedFavoritesArray = JSON.parse(localStorage.getItem("favorites"));
-  // var storedFavoritesArray = [];
 
   // Fetch URL and then for response
   fetch(wikiRequestUrl)
@@ -76,7 +74,6 @@ $(function () {
           definition: term[1],
         });
       });
-      // console.log(slangTerms);
       return slangTerms;
     })
     .catch(function (error) {
@@ -86,23 +83,14 @@ $(function () {
   function clickToSearchForSlangWords(event) {
     event.preventDefault();
     console.log(slangTerms);
-    // userInputEl
-    // userInputVal
     for (let i = 0; i < slangTerms.length; i++) {
-      // console.log(userInput)
-      //console.log(slangTerms[i].term.toLowerCase() + ” vs ” + userInput)
       if (slangTerms[i].term.toLowerCase() === userInput.value.toLowerCase()) {
-        // console.log("Matched!")
         wikiSearchOutputInTextBox.textContent = slangTerms[i].term;
         wikiDefinitionOutputInTextBox.textContent = slangTerms[i].definition;
         currentSearchOutput = slangTerms[i].term;
         var definition = slangTerms[i].definition;
         fetchGiphy(currentSearchOutput, definition);
-        // It changed the object to a string but we do not know how to update the global variable so that we can use it later in giphy portion
       }
-      // else {
-      //   console.log("Not matched")
-      // }
     }
     return;
   }
@@ -121,11 +109,7 @@ $(function () {
 
   // https://developers.giphy.com/docs/api/#quick-start-guide
   function fetchGiphy(searchTerm, definition) {
-    console.log(searchTerm);
-
-    // var tempSearchWord = "penguin"; // this will change once connected to Bryan's code
-    // var tempSearchDefinition = "A cute animal that lives in the Antarctic"
-    var tempGiphyApiKey = "u9ItgShSNZy4TjZz99RxhFbHCXXkvSMU"; // this will connect to the API key in keys.js
+    var tempGiphyApiKey = "u9ItgShSNZy4TjZz99RxhFbHCXXkvSMU";
     var requestURL = `https://api.giphy.com/v1/gifs/search?api_key=${tempGiphyApiKey}&limit=3&q=${searchTerm}`;
     console.log(requestURL);
     console.log(currentSearchOutput);
@@ -177,24 +161,10 @@ $(function () {
       gifCardThree.setAttribute("view", "visible");
     }
 
-    // Event listener for the "Favorites List" button
     var favoriteButton = document.getElementById("favorite-button");
-
+    
+    // Event listener for the "Favorites List" button
     favoriteButton.addEventListener("click", function (event) {
-      //if statement second array with previously searched terms and search that array to see if it is in there
-      // console.log(JSON.stringify(storedFavoritesArray.value) + "this is the word");
-      // if (JSON.stringify(storedFavoritesArray) === searchTerm){
-      //   console.log("block");
-      // }
-
-      // if (storedFavoritesArray.indexOf(searchTerm) !== -1) {
-      //   return;
-      // }
-
-      // if (storedFavoritesArray === searchTerm){
-      //   console.log ("blocked");
-      // }
-
       var storedFavoritesObject = {
         word: searchTerm,
         definition: definition,
@@ -208,6 +178,7 @@ $(function () {
         );
       });
 
+      // If it is not a duplicate add to local storage and render to page
       if (!isDuplicate) {
         storedFavoritesArray.push(storedFavoritesObject);
         localStorage.setItem("favorites", JSON.stringify(storedFavoritesArray));
@@ -224,52 +195,7 @@ $(function () {
         favoriteListContent.appendChild(pElement);
         pElement.textContent = definition;
       }
-
-      // for (var i = 0; i < storedFavoritesArray.length; i++){
-      //   if (storedFavoritesArray[i].word == searchTerm) {
-      //     console.log("block");
-      //   }
-      // }
-      // storedFavoritesArray.push(storedFavoritesObject);
-      // localStorage.setItem("favorites", JSON.stringify(storedFavoritesArray));
     });
-    // renderStoredFavoriteList();
   }
-
-  // function renderStoredFavoriteList() {
-  //   console.log(storedFavoritesArray);
-  //   for (var i = 0; i < storedFavoritesArray.length; i++) {
-  //     var favoriteListContent = document.getElementById(
-  //       "favorite-list-content"
-  //     );
-  //     var headerElement = document.createElement("h4");
-  //     var pElement = document.createElement("p");
-
-  //     favoriteListContent.appendChild(headerElement);
-  //     headerElement.textContent = storedFavoritesArray[i].word;
-
-  //     favoriteListContent.appendChild(pElement);
-  //     pElement.textContent = storedFavoritesArray[i].definition;
-  //   }
-  // }
-
-  // function storeFavoriteList() {
-  //   // var tempObjectArray = {
-  //   //   word: tempSearchWord,
-  //   //   definition: tempSearchDefinition
-  //   // }
-  //   // storedFavoritesArray.push(JSON.stringify(tempObjectArray));
-
-  //   localStorage.setItem("word", tempSearchWord);
-  //   localStorage.setItem("definition", tempSearchDefinition);
-  //   // storedFavoritesArray.push({"word": tempSearchWord, "defintion": tempSearchDefinition});
-  //   storedFavoritesArray.word = tempSearchWord;
-  //   storedFavoritesArray.definition = tempSearchDefinition;
-  //   // how do I add to the array instead of just update it?
-
-  //   console.log(storedFavoritesArray);
-  //   renderStoredFavoriteList();
-  // }
-
   var favoriteListButton = document.querySelector("modal-js-example");
 });
