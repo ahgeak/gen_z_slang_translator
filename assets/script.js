@@ -211,6 +211,18 @@ $(function () {
       if (!isDuplicate) {
         storedFavoritesArray.push(storedFavoritesObject);
         localStorage.setItem("favorites", JSON.stringify(storedFavoritesArray));
+
+        var favoriteListContent = document.getElementById(
+          "favorite-list-content"
+        );
+        var headerElement = document.createElement("h4");
+        var pElement = document.createElement("p");
+  
+        favoriteListContent.appendChild(headerElement);
+        headerElement.textContent = searchTerm;
+  
+        favoriteListContent.appendChild(pElement);
+        pElement.textContent = definition;
       }
 
       // for (var i = 0; i < storedFavoritesArray.length; i++){
@@ -221,25 +233,25 @@ $(function () {
       // storedFavoritesArray.push(storedFavoritesObject);
       // localStorage.setItem("favorites", JSON.stringify(storedFavoritesArray));
     });
-    renderStoredFavoriteList();
+    // renderStoredFavoriteList();
   }
 
-  function renderStoredFavoriteList() {
-    console.log(storedFavoritesArray);
-    for (var i = 0; i < storedFavoritesArray.length; i++) {
-      var favoriteListContent = document.getElementById(
-        "favorite-list-content"
-      );
-      var headerElement = document.createElement("h4");
-      var pElement = document.createElement("p");
+  // function renderStoredFavoriteList() {
+  //   console.log(storedFavoritesArray);
+  //   for (var i = 0; i < storedFavoritesArray.length; i++) {
+  //     var favoriteListContent = document.getElementById(
+  //       "favorite-list-content"
+  //     );
+  //     var headerElement = document.createElement("h4");
+  //     var pElement = document.createElement("p");
 
-      favoriteListContent.appendChild(headerElement);
-      headerElement.textContent = storedFavoritesArray[i].word;
+  //     favoriteListContent.appendChild(headerElement);
+  //     headerElement.textContent = storedFavoritesArray[i].word;
 
-      favoriteListContent.appendChild(pElement);
-      pElement.textContent = storedFavoritesArray[i].definition;
-    }
-  }
+  //     favoriteListContent.appendChild(pElement);
+  //     pElement.textContent = storedFavoritesArray[i].definition;
+  //   }
+  // }
 
   // function storeFavoriteList() {
   //   // var tempObjectArray = {
