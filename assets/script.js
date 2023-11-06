@@ -100,7 +100,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     wikiSearchButton.addEventListener('click',clickToSearchForSlangWords);
     wikiSearchButton.disabled = true;
-
+    
+    // Add keyup event listener. When number of characters match user input on search, search button will enable.
     userInput.addEventListener("keyup", function() {
       var numberOfCharacters = userInput.value.length
       console.log(numberOfCharacters)
