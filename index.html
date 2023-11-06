@@ -5,15 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"> -->
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma-rtl.min.css">
-    <link rel="stylesheet" href="./assets/style.css"></style>
+    <link rel="stylesheet" href="./assets/updatedStyle.css"></style>
     <title>Gen Z Slang Translator</title>
 </head>
 <body>
     <header>
       
-      <!-- link hero -->
-
-        <section class="hero is-link">
+      <!-- link hero - Page title -->
+        <section class="hero is-link has-background-info-dark">
             <div class="hero-body">
               <p class="title">
                 Gen Z Slang Translator
@@ -25,98 +24,155 @@
           </section>
     </header>
 
-    <!--panel panel-balock -->
-    <div class="panel-block search">
-        <p class="control has-icons-left">
-          <input id="wiki-input" class="input" type="text" placeholder="Search">
+    <!--panel panel-block - Searchbar -->
+    <article class="panel is-link m-4">
+      <div class="panel-block search">
+        <!-- Added for drop down to replace search box -->
+        <!-- <div id="wiki-input" class="select">
+          <select>
+            <option>Select a slang word</option>
+            <option>@me</option>
+            <option>bestie</option>
+          </select>
+        </div> -->
+        <!-- End of added drop down -->
 
-          <span class="icon is-left">
-            <img src="./assets/images/magnify.png" />
-          </span>
-        </p>
-      </div>
+        <!-- Bryan's original search bar -->
+          <p class="control has-icons-left">
+            <input id="wiki-input" class="input is-link" type="text" placeholder="Search">
+            <span class="icon is-left">
+              <img class="fas fa-search" src="./assets/images/magnify.png" />
+            </span>
+            <button id="searchBtn" class="button has-background-link-light mt-2">Search</button>
+          </p>
+        </div>
+    </article>
 
-      <div class="wrapper">
-       <div class="fav-box">favorite</div>
-      </div>
-      
-      <!-- this one is #cardparts cared hearer -->
-
-    <div class="wiki-output">
+      <!-- #cardparts cared header -->
+    <div class="wiki-output card m-4">
         <div class="card wiki-card">
-            <header class="output-header">
-              <p class="input">
+            <header class="output-header card-header">
+              <p id="search-output" class="input card-header-title">
                 Example word
               </p>
-              <button class="card-header-icon" aria-label="more options">
+              <!-- Bryan, do we need this? It is adding a broken icon that I do nt htink we need -->
+              <!-- <button class="card-header-icon" aria-label="more options">
                 <span class="icon">
                   <i class="fas fa-angle-down" aria-hidden="true"></i>
                 </span>
-              </button>
+              </button> -->
             </header>
 
             <!-- card content  -->
 
-            <div class="wiki-content">
-                <div class="output-content">
-                  <div class="definition">
+            <div class="wiki-content card">
+                <div class="output-content card-content">
+                  <div id="definition-output" class="definition content">
                     This slang words means....
                   </div>
                 </div>
-                <button class="favorite-button">Favorite</button>
-                <button class="gif-button">Make a Gif?</button>
-              </div>
+                <div class="card">
+                  <footer class="card-footer">
+                    <button id="favorite-button" class="button has-background-link-light card-footer-item m-2">Add to Favorite</button>
+                    <button id="gif-button" class="button has-background-link-light card-footer-item m-2">Make a Gif?</button>
+                  </footer>
+                </div>
+                <!-- This was the original button. Above is using Bulma -->
+                <!-- <button class="favorite-button">Favorite</button>
+                <button class="gif-button">Make a Gif?</button> -->
+            </div>
         </div>
     </div>
 
-    <div class="gif-output">
+    <div class="gif-output m-4 is-flex"> <!--Do we need this Div?-->
           <!-- comp card card-img -->
-            <div class="gif-content-1">
-                <div class="gif-image-1">
-                <figure class="image is-128x128">
-                    <img id="gif1" src="https://bulma.io/images/placeholders/128x128.png" alt="Gif image 1">
-                </figure>
+            <div class="gif-content-1 card m-2">
+                <div id="gif-card-1" class="gif-image-1 card-image" view="hidden">
+                  <figure class="image is-one-third"> <!--old: class="image is-128x128"-->
+                      <img id="gif1" src="https://bulma.io/images/placeholders/128x128.png" alt="Gif image 1">
+                  </figure>
+                  <div class="card-content">
+                      <p id="gif-title-1" class="title is-size-4">Oops! There is not a gif for this slang word</p>
+                  </div>
                 </div>
             </div>
-            <div class="gif-content-2">
-                <div class="gif-image-2">
-                <figure class="image is-128x128">
 
-                    <img id="gif2" src="https://bulma.io/images/placeholders/128x128.png" alt="Gif image 2">
-
-                </figure>
+            <div class="gif-content-2 card m-2">
+                <div id="gif-card-2" class="gif-image-2 card-image" view="hidden">
+                  <figure class="image is-one-third">
+                      <img id="gif2" src="https://bulma.io/images/placeholders/128x128.png" alt="Gif image 2">
+                  </figure>
+                  <div class="card-content">
+                    <p id="gif-title-2" class="title is-size-4">Oops! There is not a gif for this slang word</p>
+                  </div>
                 </div>
             </div>
-            <div class="gif-content-3">
-                <div class="gif-image-3">
-                <figure class="image is-128x128">
 
+            <div class="gif-content-3 card m-2">
+                <div id="gif-card-3" class="gif-image-3 card-image" view="hidden">
+                <figure class="image is-one-third">
                     <img id="gif3" src="https://bulma.io/images/placeholders/128x128.png" alt="Gif image 3">
-
                 </figure>
+                <div class="card-content">
+                  <p id="gif-title-3" class="title is-size-4">Oops! There is not a gif for this slang word</p>
                 </div>
+              </div>
             </div>
         </div>
 
-        <!-- Modal to hold favorite words -->
-        <div id="modal-js-example" class="modal">
-            <div class="modal-background"></div>
-          
-            <div class="modal-content">
-              <div class="box">
-                <h2>Favorites</h2>
-                <p>Slang word</p>
-                <p>Definitions</p>
-            </div>
-            
-            </div>
-          <button class="modal-close is-large" aria-label="close">X</button>
+        
 
+          <!-- Added Card for Favorite List -->
+          <!-- Card Header for Favorite List - Bulma card-header component -->
+          <div class="card favorite-list m-4">
+              <header class="card-header favorite-list-header">
+                <p id="favorite-list-header" class="card-header-title">
+                  Saved Favorites List
+                </p>
+                <button class="card-header-icon" aria-label="more options">
+                  <span class="icon">
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                  </span>
+                </button>
+              </header>
+
+              <!-- Favorite List Content - Bulma card-content component -->
+            <div class="card">
+              <div class="card-content">
+                <div id="favorite-list-content" class="content">
+                  <!-- <h4 id="favorite-list-saved-word"></h4>
+                  <p id="favorite-list-saved-definition"></p> -->
+                </div>
+              </div>
+            </div>
           </div>
+            
+          <!-- Modal to hold list of used tools -->
+        <div id="modal-js-example" class="modal">
+          <div class="modal-background"></div>
+            
+          <div class="modal-card"> <!-- was class="modal-content" -->
+            <header class="modal-card-head">
+              <p class="modal-card-title">Tools used in this program:</p>
+              <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+            <div class="box">
+              <ul>
+                <li>WikiTables API: <a href="https://www.wikitable2json.com/">https://www.wikitable2json.com/</a></li>
+                <li>Giphy API: <a href="https://developers.giphy.com/docs/api/">https://developers.giphy.com/docs/api/</a></li>
+                <li>Bulma CSS Framework: <a href="https://bulma.io/documentation/">https://bulma.io/documentation/</a></li>
+              </ul>
+            </section>
+          </div>
+          
+        </div>
+          <!-- <button class="modal-close is-large" aria-label="close">X</button> -->
+        </div>
 
-          <button class="js-modal-trigger" data-target="modal-js-example">
-            Favorites
-          </button>
+        <button class="button has-background-link-light js-modal-trigger m-4" data-target="modal-js-example">Resources</button>
+
+          <!-- end of added content since last pull -->
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="./assets/script.js"></script>

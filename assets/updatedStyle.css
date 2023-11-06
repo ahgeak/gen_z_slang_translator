@@ -1,0 +1,18 @@
+/* Optional retro backgrounds */
+/* body {
+    background-image: url("./images/retro_background_image_2.jpeg");
+} */
+
+/* body {
+    background-image: url("./images/retro_background_image.jpg");
+} */
+
+/* hide elements */
+[view="hidden"] {
+    display: none;
+}
+
+/* make elements visible */
+[view="visible"] {
+    display: block;
+}
